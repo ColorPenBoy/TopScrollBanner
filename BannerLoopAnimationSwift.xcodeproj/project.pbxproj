@@ -14,12 +14,12 @@
 		8E844C861BCD2131004AA9C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E844C841BCD2131004AA9C4 /* LaunchScreen.storyboard */; };
 		8E844C911BCD2131004AA9C4 /* BannerLoopAnimationSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E844C901BCD2131004AA9C4 /* BannerLoopAnimationSwiftTests.swift */; };
 		8E844C9C1BCD2131004AA9C4 /* BannerLoopAnimationSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E844C9B1BCD2131004AA9C4 /* BannerLoopAnimationSwiftUITests.swift */; };
-		8E844CAA1BCD2159004AA9C4 /* BZLoopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E844CA91BCD2159004AA9C4 /* BZLoopView.swift */; settings = {ASSET_TAGS = (); }; };
-		8E844CB01BCD2171004AA9C4 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E844CAB1BCD2171004AA9C4 /* 0.jpg */; settings = {ASSET_TAGS = (); }; };
-		8E844CB11BCD2171004AA9C4 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E844CAC1BCD2171004AA9C4 /* 1.jpg */; settings = {ASSET_TAGS = (); }; };
-		8E844CB21BCD2171004AA9C4 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E844CAD1BCD2171004AA9C4 /* 2.jpg */; settings = {ASSET_TAGS = (); }; };
-		8E844CB31BCD2171004AA9C4 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E844CAE1BCD2171004AA9C4 /* 3.jpg */; settings = {ASSET_TAGS = (); }; };
-		8E844CB41BCD2171004AA9C4 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E844CAF1BCD2171004AA9C4 /* 4.jpg */; settings = {ASSET_TAGS = (); }; };
+		8E844CAA1BCD2159004AA9C4 /* BZLoopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E844CA91BCD2159004AA9C4 /* BZLoopView.swift */; };
+		8E844CB01BCD2171004AA9C4 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E844CAB1BCD2171004AA9C4 /* 0.jpg */; };
+		8E844CB11BCD2171004AA9C4 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E844CAC1BCD2171004AA9C4 /* 1.jpg */; };
+		8E844CB21BCD2171004AA9C4 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E844CAD1BCD2171004AA9C4 /* 2.jpg */; };
+		8E844CB31BCD2171004AA9C4 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E844CAE1BCD2171004AA9C4 /* 3.jpg */; };
+		8E844CB41BCD2171004AA9C4 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E844CAF1BCD2171004AA9C4 /* 4.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -426,6 +427,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.7color.BannerLoopAnimationSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -437,6 +439,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.7color.BannerLoopAnimationSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -507,6 +510,7 @@
 				8E844CA21BCD2131004AA9C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E844CA31BCD2131004AA9C4 /* Build configuration list for PBXNativeTarget "BannerLoopAnimationSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +519,7 @@
 				8E844CA51BCD2131004AA9C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E844CA61BCD2131004AA9C4 /* Build configuration list for PBXNativeTarget "BannerLoopAnimationSwiftUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +528,7 @@
 				8E844CA81BCD2131004AA9C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

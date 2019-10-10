@@ -15,7 +15,7 @@ class ViewController: UIViewController {
 
         var dataArray:[UIImageView] = []
         
-        for var i = 0; i < 5; i++ {
+        for i in 0..<5 {
             
             let imageName:String = "\(i)" + ".jpg"
 
@@ -26,9 +26,9 @@ class ViewController: UIViewController {
         
         let bzloop : BZLoopView = BZLoopView()
         
-        bzloop.frame = CGRectMake(0, 100, UIScreen.mainScreen().bounds.size.width, 200)
+        bzloop.frame = CGRect(x: 0, y: 100, width: UIScreen.main.bounds.size.width, height: 200)
         
-        bzloop.loadImageArray(dataArray) { (currentIndex) -> Void in
+        bzloop.loadImageArray(imageArray: dataArray) { (currentIndex) -> Void in
             print("第\(currentIndex)张图")
         }
         self.view.addSubview(bzloop)

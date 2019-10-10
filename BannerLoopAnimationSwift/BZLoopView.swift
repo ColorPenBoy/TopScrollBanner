@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class BZLoopView: UIView {
     
     private var imageView : UIImageView?
@@ -18,11 +20,11 @@ class BZLoopView: UIView {
     
     private var imgCount : Int?
     
-    private var timer : NSTimer?
+    private var timer : Timer?
     
-    private var oneClick : ((currentIndex:Int)->Void)!
+    private var oneClick : ((_ currentIndex:Int)->Void)!
     
-    func loadImageArray(imageArray: Array<UIImageView>, oneClick:(currentIndex:Int) -> Void){
+    func loadImageArray(imageArray: Array<UIImageView>, oneClick:@escaping (_ currentIndex:Int) -> Void){
         
         self.oneClick = oneClick
         
@@ -46,44 +48,47 @@ class BZLoopView: UIView {
 
     private func loadLoopImageTimer(){
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "leftSwipe:" , userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 3.0,
+                                          target: self, selector:#selector(BZLoopView.leftSwipe(gesture:)) ,
+                                          userInfo: nil,
+                                          repeats: true)
         
-        NSRunLoop.currentRunLoop().addTimer(self.timer!, forMode: UITrackingRunLoopMode)
+        RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.tracking)
     }
     
     
     private func loadLoopImageGestureRecognizer(){
         
         //添加左滑手势
-        let leftSwipeGesture = UISwipeGestureRecognizer.init(target: self, action: "leftSwipe:")
+        let leftSwipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(BZLoopView.leftSwipe(gesture:)))
         
-        leftSwipeGesture.direction = UISwipeGestureRecognizerDirection.Left
+        leftSwipeGesture.direction = UISwipeGestureRecognizer.Direction.left
         
         self.addGestureRecognizer(leftSwipeGesture)
 
         //添加右滑手势
-        let rightSwipeGesture = UISwipeGestureRecognizer.init(target: self, action: "rightSwipe:")
+        let rightSwipeGesture = UISwipeGestureRecognizer.init(target: self, action: #selector(BZLoopView.rightSwipe(gesture:)))
         
-        rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.Right
+        rightSwipeGesture.direction = UISwipeGestureRecognizer.Direction.right
         
         self.addGestureRecognizer(rightSwipeGesture)
         
         //添加单击手势
-        let titleImgTapRecognizer = UITapGestureRecognizer.init(target: self, action: "BannerImageClick:")
+        let titleImgTapRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(BZLoopView.BannerImageClick(gesture:)))
         
         self.addGestureRecognizer(titleImgTapRecognizer)
     }
     
-    func leftSwipe(gesture : UISwipeGestureRecognizer){
-        self.transitionAnimation(true)
+    @objc func leftSwipe(gesture : UISwipeGestureRecognizer){
+        self.transitionAnimation(isNext: true)
     }
 
-    func rightSwipe(gesture : UISwipeGestureRecognizer){
-        self.transitionAnimation(false)
+    @objc func rightSwipe(gesture : UISwipeGestureRecognizer){
+        self.transitionAnimation(isNext: false)
     }
     
-    func BannerImageClick(gesture : UITapGestureRecognizer){
-        self.oneClick(currentIndex: self.currentIndex)
+    @objc func BannerImageClick(gesture : UITapGestureRecognizer){
+        self.oneClick(self.currentIndex)
     }
     
     private func transitionAnimation(isNext : Bool){
@@ -91,18 +96,18 @@ class BZLoopView: UIView {
         //1.创建转场动画对象
         let transition:CATransition = CATransition.init()
         
-        transition.type = "cube"
+        transition.type = CATransitionType.init(rawValue: "cube")
         
-        transition.subtype = isNext ? kCATransitionFromRight : kCATransitionFromLeft
+        transition.subtype = isNext ? CATransitionSubtype(rawValue: "fromRight") : CATransitionSubtype(rawValue: "fromLeft")
         
         transition.duration = 0.5
         
-        transition.delegate = self
+        transition.delegate = self as CAAnimationDelegate
         
         //2.设置转场后的新视图添加转场动画
-        self.imageView!.image = self.getImage(isNext);
+        self.imageView!.image = self.getImage(isNext: isNext);
         
-        self.imageView!.layer.addAnimation(transition, forKey:"KCTransitionAnimation")
+        self.imageView!.layer.add(transition, forKey:"KCTransitionAnimation")
     }
     
     private func getImage(isNext : Bool) -> UIImage{
@@ -118,11 +123,15 @@ class BZLoopView: UIView {
         return imageUU.image!
     }
     
-    override  func animationDidStart(anim: CAAnimation) {
-        self.userInteractionEnabled = false
+}
+
+extension BZLoopView : CAAnimationDelegate {
+    
+    func animationDidStart(_ anim: CAAnimation) {
+        self.isUserInteractionEnabled = false
     }
     
-    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-        self.userInteractionEnabled = true
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        self.isUserInteractionEnabled = true
     }
 }
